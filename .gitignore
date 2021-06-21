@@ -2,4 +2,4 @@ bin
 configuration
 db
 wallet
-
+node.log

@@ -32,6 +32,28 @@ user@machine$ cardano-cli --version
 user@machine$ cardano-node --version
 ```
 
+## Run the node
+
+Start the `cardano-node` process:
+```bash
+user@machine$ ./script/start-node.sh
+```
+
+This starts a passive node (which does not produce blocks). Instructions for running a stakepool on testnet are currently outside of the scope of this project.
+
+Logging information from the process is written to `db/node.log`, which you can inspect with the tool of your choice. For example, if you install the [lnav](https://lnav.org/) utility, then you view the log file as follows:
+```bash
+user@machine$ lnav -t -c ':goto 100%' db/node.log
+```
+
+## Query the node
+
+Most CLI commands on the testnet have to use the parameter `--testnet-magic 5`.
+
+Query the latest synchronized block on the local node:
+```bash
+user@machine$ cardano-cli query tip --testnet-magic 5
+```
 ## Next steps
 
 Explore the [testnet exercises for the Alonzo testnet](https://github.com/input-output-hk/Alonzo-testnet).
