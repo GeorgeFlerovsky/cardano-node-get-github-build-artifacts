@@ -5,7 +5,7 @@ Get started quickly with Cardano's Alonzo Blue testnet.
 
 This project has been developed/tested on a Linux system, and it requires the [direnv](https://direnv.net/) and [jq](https://stedolan.github.io/jq/) utilities.
 
-In the Setup scripts below, the Github API is used to find and download the correct `cardano-node` binary executables. Unfortunately, the Github API requires a personal access token to actually download the files via the link that it provides. You will need to [get your own token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) and write it to a file called `github-token` the the root project folder.
+In the Setup scripts below, the Github API is used to find and download the correct `cardano-node` binary executables. Unfortunately, the Github API requires a personal access token to actually download the files via the link that it provides. You will need to [get your own token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) and write it to a file called `github-token` in the root project folder.
 
 ## Setup
 
