@@ -5,10 +5,8 @@ branch="alonzo-blue2.0"
 tag="alonzo-blue2.0"
 os="ubuntu"
 
-# Github API requires a personal access token. This is token from a dummy account.
-# Github seems to enjoy invalidating this token, so it may need to be replaced
-# periodically.
-token="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"
+# Github API requires a personal access token.
+token=$(cat $NODE_HOME/github-token)
 
 bindir=$NODE_HOME/bin
 

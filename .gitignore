@@ -3,3 +3,4 @@ configuration
 db
 wallet
 node.log
+github-token
