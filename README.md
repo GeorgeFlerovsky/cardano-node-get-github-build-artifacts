@@ -5,6 +5,8 @@ Get started quickly with Cardano's Alonzo Blue testnet.
 
 This project has been developed/tested on a Linux system, and it requires the [direnv](https://direnv.net/) and [jq](https://stedolan.github.io/jq/) utilities.
 
+In the Setup scripts below, the Github API is used to find and download the correct `cardano-node` binary executables. Unfortunately, the Github API requires a personal access token to actually download the files via the link that it provides. You will need to [get your own token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) and write it to a file called `github-token` the the root project folder.
+
 ## Setup
 
 Clone this repository, enter the repository's directory. Enable the `direnv` environment for the directory.
@@ -22,8 +24,7 @@ Download the executable binaries corresponding to the [`alonzo-blue2.0`](https:/
 user@machine$ ./script/download-alonzo-blue-executables.sh 
 ```
 
-The script downloads the binary executables by querying the Github API for the build artifacts associated with the commit associated with the tag. Unfortunately, Github API requires a personal access token to actually download the files via the link it provides. There is a dummy token (with only `public-repo` scope) hard-coded in the script, but Github may invalidate it at some point if it is overused. You may need to [get your own token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) and overwrite the `token` variable at the top of the `script/download-alonzo-blue-executables.sh` script.
-
+The script downloads the binary executables by querying the Github API for the build artifacts that were generated for the commit associated with the tag.
 
 Make sure that the executables are properly installed and visible on the system path:
 ```bash
