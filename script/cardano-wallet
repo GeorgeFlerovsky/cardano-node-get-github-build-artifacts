@@ -36,6 +36,10 @@ main() {
       
       wallet_address=$(cat $wallet_address_file)
 
+      echo ""
+      echo "Wallet $wallet_id: $wallet_address"
+      echo ""
+
       cardano-cli query utxo --address $wallet_address --testnet-magic 5
       ;;
     create)

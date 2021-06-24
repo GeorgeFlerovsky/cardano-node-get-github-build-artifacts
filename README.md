@@ -55,6 +55,46 @@ Query the latest synchronized block on the local node:
 ```bash
 user@machine$ cardano-cli query tip --testnet-magic 5
 ```
+
+## Manage keys/addresses
+WARNING: This is a poor man's wallet management tool, ONLY meant for use on the Alonzo testnet. You have been warned!
+
+A "wallet" is a set of payment keys, staking keys, staking address, and payment address.
+
+Create wallet 1:
+```bash
+user@machine$ ./script/cardano-wallet create 1
+Creating wallet 1 at $NODE_HOME/wallet/1
+```
+
+Get the address for wallet 1:
+```bash
+user@machine$ ./script/cardano-wallet address 1
+addrijaoij123aosicamoiaiom
+
+user@machine$ ./script/cardano-wallet 1
+addrijaoij123aosicamoiaiom
+```
+
+Get the utxo balances for wallet 1:
+```bash
+user@machine$ ./script/cardano-wallet balance 1
+
+Wallet 1: addrijaoij123aosicamoiaiom
+
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+asdoaijoasd21231231dawsdaoij                                         1        182734 lovelace + TxOutDatumHashNone
+ipousacvnsuunqqlkjq123aoimco                                         1        1237896912387619 lovelace + TxOutDatumHashNone
+```
+
+Remove wallet 1:
+```bash
+user@machine$ ./script/cardano-wallet remove 1
+Are you sure you want to remove wallet 1 at $NODE_PATH/wallet/1 (y/n)? y
+Removing wallet 1
+```
+
 ## Next steps
 
 Explore the [testnet exercises for the Alonzo testnet](https://github.com/input-output-hk/Alonzo-testnet).
