@@ -4,6 +4,11 @@
 # Main logic of the script
 # ==========================================================
 main() {
+  if [ -z $wallet_id ]; then
+    echoerr "Wallet ID unspecified for operation '$operation'"
+    exit 1
+  fi
+
   wallet_dir="$NODE_HOME/wallet/$wallet_id"
 
   case $operation in
