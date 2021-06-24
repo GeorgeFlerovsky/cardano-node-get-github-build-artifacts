@@ -9,13 +9,13 @@ main() {
   case $operation in
     address)
       if [ ! -d $wallet_dir ]; then
-        echo "Wallet $wallet_id doesn't exist at $wallet_dir"
+        echoerr "Wallet $wallet_id doesn't exist at $wallet_dir"
         exit 1
       fi
 
       wallet_address_file="$wallet_dir/payment.addr"
       if [ ! -f $wallet_address_file ]; then
-        echo "Address file for wallet $wallet_id doesn't exist at $wallet_address_file"
+        echoerr "Address file for wallet $wallet_id doesn't exist at $wallet_address_file"
         exit 1
       fi
 
@@ -23,13 +23,13 @@ main() {
       ;;
     balance)
       if [ ! -d $wallet_dir ]; then
-        echo "Wallet $wallet_id doesn't exist at $wallet_dir"
+        echoerr "Wallet $wallet_id doesn't exist at $wallet_dir"
         exit 1
       fi
 
       wallet_address_file="$wallet_dir/payment.addr"
       if [ ! -f $wallet_address_file ]; then
-        echo "Address file for wallet $wallet_id doesn't exist at $wallet_address_file"
+        echoerr "Address file for wallet $wallet_id doesn't exist at $wallet_address_file"
         exit 1
       fi
 
@@ -44,7 +44,7 @@ main() {
       ;;
     create)
       if [ -d $wallet_dir ]; then
-        echo "Cannot create wallet $wallet_id, because it already exists at $wallet_dir"
+        echoerr "Cannot create wallet $wallet_id, because it already exists at $wallet_dir"
         exit 1
       fi
 
@@ -77,7 +77,7 @@ main() {
       ;;
    remove)
       if [ ! -d $wallet_dir ]; then
-        echo "Wallet $wallet_id doesn't exist at $wallet_dir"
+        echoerr "Wallet $wallet_id doesn't exist at $wallet_dir"
         exit 0
       fi
 
@@ -94,7 +94,7 @@ main() {
       fi
       ;;
     *)
-      echo "Programming error: operation '$operation' not implemented."
+      echoerr "Programming error: operation '$operation' not implemented."
       exit 9
   esac
 }
@@ -137,7 +137,7 @@ handle_args() {
               break
               ;;
           *)
-              echo "Unknown options provided: $@"
+              echoerr "Unknown options provided: $@"
               exit 51
               ;;
       esac
@@ -191,14 +191,14 @@ handle_args() {
         wallet_id="$1"
         shift
       else
-        echo "Unknown operation: $@"
+        echoerr "Unknown operation: $@"
         exit 52
       fi
       ;;
   esac
 
   if [[ "$#" > 0 ]]; then
-    echo "Unknown arguments provided for operation '$operation': '$@'"
+    echoerr "Unknown arguments provided for operation '$operation': '$@'"
     exit 53
   fi
 }
@@ -230,14 +230,14 @@ echoerr (){
 # Test whether getopt works
 ! getopt --test > /dev/null
 if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
-  echo "'getopt --test' failed"
+  echoerr "'getopt --test' failed"
   exit 101
 fi
 
 # Parse command-line arguments, canonicalizing in-place
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
-  echo "Failed to parse arguments"
+  echoerr "Failed to parse arguments"
   exit 102
 fi
 
