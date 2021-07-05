@@ -1,4 +1,4 @@
-# Get `cardano-node` and `cardano-cli` binaries using Github API
+# Get `cardano-node` and `cardano-cli` binaries from Github
 Get `cardano-node` and `cardano-cli` binaries for a specific branch/tag of the `input-output-hk/cardano-node` repository, using the Github API.
 
 ## Pre-requisites
