@@ -23,6 +23,7 @@ Download the executable binaries corresponding to the [`alonzo-blue2.0`](https:/
 ```bash
 user@machine$ ./script/download-alonzo-blue-executables.sh 
 ```
+Note that if you want a different branch/tag from the cardano-node repository, or a different OS than linux, then you should modify the variable values at the top of [./script/download-alonzo-blue-executables.sh](./script/download-alonzo-blue-executables.sh). Possible values for OS are: ubuntu, macos, windows.
 
 The script downloads the binary executables by querying the Github API for the build artifacts that were generated for the commit associated with the tag.
 
