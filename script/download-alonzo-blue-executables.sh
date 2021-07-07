@@ -18,18 +18,21 @@ cd $tmpdir1
 
 # Get the commit hash that corresponds to the chosen tag
 curl -s -L "https://api.github.com/repos/input-output-hk/cardano-node/tags" --output tags.json
-tag_commit=$(jq --arg tag $tag '.[] | select(.name | contains($tag)) | .commit.sha' -cr tags.json)
+tag_commit=$(jq --arg tag $tag 'map(select(.name | contains($tag))) | .[0].commit.sha' -cr tags.json)
 
 # From the cardano node repositories' workflows, select the ones that build executables.
 # Their IDs were [4656235,2606421] at the time this script was written.
 curl -s -L "https://api.github.com/repos/input-output-hk/cardano-node/actions/workflows" --output workflows.json
-workflows=$(jq '[.workflows[] | select(.name | contains("Haskell CI")) | .id]' -cr workflows.json)
+workflows=$(jq '.workflows | map(select(.name | contains("Haskell CI")) | .id)' -cr workflows.json)
 
 curl -s -L "https://api.github.com/repos/input-output-hk/cardano-node/actions/runs?event=push&status=success&branch=$branch" --output workflow_runs.json
-workflow_run=$(jq --argjson workflows $workflows --arg tag_commit $tag_commit '.workflow_runs[] | select(([.workflow_id] | inside($workflows)) and (.head_commit.id == $tag_commit)) | .id' -cr workflow_runs.json)
+workflow_run=$(jq --argjson workflows $workflows \
+                  --arg tag_commit $tag_commit \
+                  '.workflow_runs | map(select(([.workflow_id] | inside($workflows)) and (.head_commit.id == $tag_commit))) | .[0].id' \
+                  -cr workflow_runs.json)
 
 curl -s -L "https://api.github.com/repos/input-output-hk/cardano-node/actions/runs/$workflow_run/artifacts" --output artifacts_workflow.json
-artifact_url=$(jq --arg os $os '.artifacts[] | select(.name | contains($os) and (contains("chairman") | not)) | .archive_download_url' -cr artifacts_workflow.json)
+artifact_url=$(jq --arg os $os '.artifacts | map(select(.name | contains($os) and (contains("chairman") | not))) | .[0].archive_download_url' -cr artifacts_workflow.json)
 
 # ====================================================================================
 # Download and extract the build artifacts into the node's bin folder
