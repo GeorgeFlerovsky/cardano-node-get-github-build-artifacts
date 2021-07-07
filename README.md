@@ -44,7 +44,7 @@ This starts a passive node (which does not produce blocks). Instructions for run
 
 Logging information from the process is written to `db/node.log`, which you can inspect with the tool of your choice. For example, if you install the [lnav](https://lnav.org/) utility, then you view the log file as follows:
 ```bash
-user@machine$ lnav -t -c ':goto 100%' db/node.log
+user@machine$ lnav -t -c ':goto 100%' $NODE_HOME/node.log
 ```
 
 ## Query the node

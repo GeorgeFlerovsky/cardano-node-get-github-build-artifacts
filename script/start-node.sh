@@ -5,6 +5,8 @@ DB_PATH=${NODE_HOME}/db
 CONFIG=${NODE_CONFIG_DIR}/alonzo-blue-config.json
 TOPOLOGY=${NODE_CONFIG_DIR}/alonzo-blue-topology.json
 
+cd $NODE_HOME
+
 cardano-node run --topology ${TOPOLOGY} --database-path ${DB_PATH} --socket-path ${CARDANO_NODE_SOCKET_PATH} --host-addr ${HOSTADDR} --port ${PORT} --config ${CONFIG} > node.log
 
 
